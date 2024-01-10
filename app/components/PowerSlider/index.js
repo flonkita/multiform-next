@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const PowerSlider = ({ PowerValue }) => {
+  const [displayValue, setDisplayValue] = useState(`${PowerValue} KWh`);
+
   const updateRangeValue = (event) => {
     const newRangeValue = event.target.value;
-    // Mettez à jour directement la sortie ici
-    document.querySelector("#rangeValue").textContent = newRangeValue;
+    setDisplayValue(`${newRangeValue} KWh`);
   };
 
   return (
@@ -19,13 +20,9 @@ export const PowerSlider = ({ PowerValue }) => {
         onChange={updateRangeValue}
         id="PowerRange"
       />
-      <output
-        className="ml-4 text-gray-700"
-        htmlFor="PowerRange"
-        id="rangeValue"
-      >
-        {PowerValue}
-      </output>
+      <p className="ml-4 text-gray-700" htmlFor="PowerRange" id="rangeValue">
+        {displayValue}
+      </p>
     </div>
   );
 };

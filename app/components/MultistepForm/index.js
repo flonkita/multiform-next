@@ -78,6 +78,7 @@ const card1 = [
     imageUrl: "/bureaux.jpg",
   },
 ];
+
 const card2 = [
   {
     title: "Électricité",
@@ -93,18 +94,17 @@ const card2 = [
   },
 ];
 
-const [selections, setSelections] = React.useState(Array(NbStep).fill(null));
-
-const handleSelection = (step, selectedValue) => {
-  const updatedSelections = [...selections];
-  updatedSelections[step - 1] = selectedValue;
-  setSelections(updatedSelections);
-};
-
-
-const NbStep = products.length + 1;
-
 const MultistepForm = () => {
+  const NbStep = products.length + 1;
+  
+  const [selections, setSelections] = React.useState(Array(NbStep).fill(null));
+  
+  const handleSelection = (step, selectedValue) => {
+    const updatedSelections = [...selections];
+    updatedSelections[step - 1] = selectedValue;
+    setSelections(updatedSelections);
+  };
+  
   const [currentStep, setCurrentStep] = React.useState(1);
 
   return (
@@ -128,6 +128,7 @@ const MultistepForm = () => {
                       title={card.title}
                       imageUrl={card.imageUrl}
                       onClick={() => handleSelection(currentStep, card.title)}
+                      isSelected={selections[currentStep - 1] === card.title}
                     />
                   ))}
                 </div>
@@ -140,7 +141,10 @@ const MultistepForm = () => {
                     A quelle température chauffez vous en moyenne cette surface
                     ?
                   </h1>
-                  <HeatSlider value={22} />
+                  <HeatSlider
+                    value={22}
+                    onSelection={(value) => handleSelection(currentStep, value)}
+                  />
                 </div>
               </div>
             )}
@@ -156,6 +160,8 @@ const MultistepForm = () => {
                         key={card.title}
                         title={card.title}
                         imageUrl={card.imageUrl}
+                        onClick={() => handleSelection(currentStep, card.title)}
+                        isSelected={selections[currentStep - 1] === card.title}
                       />
                     ))}
                   </div>
@@ -168,7 +174,10 @@ const MultistepForm = () => {
                   <h1 class=" text-5xl size-2/5 text-center font-bold m-20">
                     Quelle est votre consommation en kWh chaque année ?
                   </h1>
-                  <PowerSlider value={5000} />
+                  <PowerSlider
+                    value={5000}
+                    onSelection={(value) => handleSelection(currentStep, value)}
+                  />
                 </div>
               </div>
             )}

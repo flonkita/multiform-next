@@ -8,7 +8,7 @@ export const ProgressBar = ({ currentStep, finalStep }) => {
     <div className="w-full bg-gray-200 h-5 rounded-md mb-4">
       <div
         className=" w-full h-full bg-yellow-500 rounded-md"
-        style={{ width: progressWidth }}
+        style={{ width: progressWidth, transition: "width 0.3s ease-in-out" }}
       ></div>
     </div>
   );

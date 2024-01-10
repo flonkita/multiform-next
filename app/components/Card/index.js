@@ -1,15 +1,12 @@
 import { React } from "react";
 
-export const Card = ({ title, imageUrl, onClick, selected }) => {
+export const Card = ({ title, imageUrl, onClick, isSelected }) => {
   return (
     <div
-      class="max-w-xs mx-auto overflow-hidden border border-gray-200 p-5 bg-white rounded-lg shadow-md"
+      className={`max-w-xs mx-auto overflow-hidden border p-5 bg-white rounded-lg shadow-md hover:bg-gray-200 transition duration-300 ease-in-out transform ${
+        isSelected ? "border-yellow-500" : "border-gray-200"
+      }`}
       onClick={onClick}
-      style={
-        selected && {
-          borderColor: "red",
-        }
-      }
     >
       <div class="relative">
         <img class="w-full h-64 object-cover" src={imageUrl} alt="{imageUrl}" />
