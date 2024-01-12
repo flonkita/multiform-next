@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+// import { useHistory } from "react-router-dom";
 import { ProgressBar } from "../ProgressBar";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
@@ -17,7 +17,7 @@ const products = [
       max: 4999,
     },
     price: 3456,
-    image: "",
+    image: "/pompe1.jpg",
     pacType: "Air/Eau",
     gasType: "R330",
     warranty: 2,
@@ -30,7 +30,7 @@ const products = [
       max: 10000,
     },
     price: 5678,
-    image: "",
+    image: "/pompe2.jpg",
     pacType: "Air/Air",
     gasType: "R430",
     warranty: 3,
@@ -43,7 +43,7 @@ const products = [
       max: 15000,
     },
     price: 7890,
-    image: "",
+    image: "/pompe3.jpg",
     pacType: "Air/Eau",
     gasType: "R380",
     warranty: 4,
@@ -56,7 +56,7 @@ const products = [
       max: 30000,
     },
     price: 1234,
-    image: "",
+    image: "/pompe4.jpg",
     pacType: "Air/Air",
     gasType: "R380",
     warranty: 5,
@@ -117,8 +117,8 @@ const MultistepForm = () => {
         {currentStep !== NbStep + 1 ? (
           <>
             {currentStep === 1 && (
-              <div class="flex flex-col w-full mb-4">
-                <h1 class=" text-3xl size-2/5 text-center font-bold m-16">
+              <div className="flex flex-col w-full mb-4">
+                <h1 className=" text-3xl size-2/5 text-center font-bold m-16">
                   Quel type de bâtiment souhaitez vous équiper ?
                 </h1>
                 <div className=" flex flex-row justify-evenly ">
@@ -136,8 +136,8 @@ const MultistepForm = () => {
             )}
             {currentStep === 2 && (
               <div>
-                <div class="flex flex-col w-full mb-4">
-                  <h1 class=" text-5xl size-2/5 text-center font-bold m-20">
+                <div className="flex flex-col w-full mb-4">
+                  <h1 className=" text-5xl size-2/5 text-center font-bold m-20">
                     A quelle température chauffez vous en moyenne cette surface
                     ?
                   </h1>
@@ -150,8 +150,8 @@ const MultistepForm = () => {
             )}
             {currentStep === 3 && (
               <div>
-                <div class="flex flex-col w-full mb-4">
-                  <h1 class=" text-5xl size-2/5 text-center font-bold my-10">
+                <div className="flex flex-col w-full mb-4">
+                  <h1 className=" text-5xl size-2/5 text-center font-bold my-10">
                     Quel est votre type de chauffage principal ?
                   </h1>
                   <div className=" flex flex-col md:flex-row justify-evenly my-10 ">
@@ -170,8 +170,8 @@ const MultistepForm = () => {
             )}
             {currentStep === 4 && (
               <div>
-                <div class="flex flex-col w-full mb-4">
-                  <h1 class=" text-5xl size-2/5 text-center font-bold m-20">
+                <div className="flex flex-col w-full mb-4">
+                  <h1 className=" text-5xl size-2/5 text-center font-bold m-20">
                     Quelle est votre consommation en kWh chaque année ?
                   </h1>
                   <PowerSlider
@@ -184,8 +184,8 @@ const MultistepForm = () => {
 
             {currentStep === 5 && (
               <div>
-                <div class="flex flex-col md:flex-row w-full mb-4">
-                  <h1 class=" text-5xl size-2/5 text-left font-bold m-20">
+                <div className="flex flex-col md:flex-row w-full mb-4">
+                  <h1 className=" text-5xl size-2/5 text-left font-bold m-20">
                     Merci pour ces informations !<br />
                     Nous avons choisi cette pompe à chaleur pour vous
                   </h1>

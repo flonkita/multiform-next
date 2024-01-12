@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-export const PowerSlider = ({ PowerValue }) => {
+export const PowerSlider = ({ PowerValue, onSelection }) => {
   const [displayValue, setDisplayValue] = useState(`${PowerValue} KWh`);
 
   const updateRangeValue = (event) => {
     const newRangeValue = event.target.value;
     setDisplayValue(`${newRangeValue} KWh`);
+    onSelection(newRangeValue);
   };
 
   return (

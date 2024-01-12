@@ -1,71 +1,25 @@
+'use client';
+
 import React from "react";
+import Link from "next/link";
+import { useAppContext } from "@/app/app-context";
 
 
-const products = [
-  {
-    title: "Pompe à chaleur 1",
-    powerRange: {
-      min: 1000,
-      max: 4999,
-    },
-    price: 3456,
-    image: "",
-    pacType: "Air/Eau",
-    gasType: "R330",
-    warranty: 2,
-    isPacSystemModule: true,
-  },
-  {
-    title: "Pompe à chaleur 2",
-    powerRange: {
-      min: 5000,
-      max: 10000,
-    },
-    price: 5678,
-    image: "",
-    pacType: "Air/Air",
-    gasType: "R430",
-    warranty: 3,
-    isPacSystemModule: true,
-  },
-  {
-    title: "Pompe à chaleur 3",
-    powerRange: {
-      min: 10000,
-      max: 15000,
-    },
-    price: 7890,
-    image: "",
-    pacType: "Air/Eau",
-    gasType: "R380",
-    warranty: 4,
-    isPacSystemModule: true,
-  },
-  {
-    title: "Pompe à chaleur 4",
-    powerRange: {
-      min: 15000,
-      max: 30000,
-    },
-    price: 1234,
-    image: "",
-    pacType: "Air/Air",
-    gasType: "R380",
-    warranty: 5,
-    isPacSystemModule: true,
-  },
-];
 
-const NbStep = products.length + 1;
+export const Footer = ({ NbStep, currentStep, setCurrentStep }) => {
 
-export const Footer = ({ currentStep,setCurrentStep }) => {
-  // const [currentStep, setCurrentStep] = React.useState(0);
+const { choices, setChoices } = useAppContext();
+
 
   console.log("currentStep:", currentStep);
 
   const nextStep = () => {
     if (currentStep < NbStep) {
-      setCurrentStep(currentStep + 1);
+      console.log("current before update:", currentStep);
+      setCurrentStep((prevStep) => {
+        console.log("current after update:", prevStep + 1);
+        return prevStep + 1;
+      });
     }
   };
 
@@ -73,11 +27,6 @@ export const Footer = ({ currentStep,setCurrentStep }) => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
-  };
-
-  const showProduct = () => {
-    // Afficher les détails du produit ou effectuer d'autres actions
-    console.log(products[currentStep - 1]);
   };
 
   return (
@@ -97,12 +46,21 @@ export const Footer = ({ currentStep,setCurrentStep }) => {
           Suivant
         </button>
       ) : (
-        <button
-          onClick={showProduct}
-          className="bg-green-500 text-white px-4 py-2 rounded-md"
+        <Link
+          href={{
+            pathname: "/summary",
+            query: {
+              building: choices?.building || "",
+              heat: choices?.heat || "",
+              type: choices?.type || "",
+              consommation: choices?.consommation || "",
+            },
+          }}
         >
-          Voir le produit
-        </button>
+          <div className="rounded-md px-3.5 py-2.5 bg-orange-300 cursor-pointer hover:bg-yellow-400">
+            Terminer
+          </div>
+        </Link>
       )}
     </div>
   );

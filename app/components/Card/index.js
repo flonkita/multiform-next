@@ -8,11 +8,11 @@ export const Card = ({ title, imageUrl, onClick, isSelected }) => {
       }`}
       onClick={onClick}
     >
-      <div class="relative">
-        <img class="w-full h-64 object-cover" src={imageUrl} alt="{imageUrl}" />
+      <div className="relative">
+        <img className="w-full h-64 object-cover" src={imageUrl} alt="{imageUrl}" />
       </div>
-      <div class="p-4">
-        <h3 class="text-xl font-semibold mb-2">{title}</h3>
+      <div className="p-4">
+        <h3 className="text-xl font-semibold mb-2">{title}</h3>
       </div>
     </div>
   );
